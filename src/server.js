@@ -1,13 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
-const path = require('path');
-dotenv.config({ path: path.join(__dirname, '../.env') });
+require("dotenv").config();
+// const path = require('path');
+// dotenv.config({ path: path.join(__dirname, '../.env') });
+
 
 const app = express();
 
