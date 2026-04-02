@@ -4,7 +4,6 @@ const cors = require('cors');
 // const dotenv = require('dotenv');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 require("dotenv").config();
 // const path = require('path');
@@ -40,7 +39,6 @@ app.use('/api/payment/webhook', express.raw({ type: 'application/json' }));
 app.use(express.json());
 
 // Protection contre les injections
-app.use(mongoSanitize());
 app.use(xss());
 
 const authLimiter = rateLimit({
@@ -49,6 +47,7 @@ const authLimiter = rateLimit({
 });
 app.use('/api/auth', authLimiter);
 
+mongoose.set('sanitizeFilter', true);
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('MongoDB Atlas Connecté avec succès');
