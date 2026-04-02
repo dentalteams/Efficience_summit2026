@@ -4,7 +4,6 @@ const cors = require('cors');
 // const dotenv = require('dotenv');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const xss = require('xss-clean');
 require("dotenv").config();
 // const path = require('path');
 // dotenv.config({ path: path.join(__dirname, '../.env') });
@@ -38,8 +37,7 @@ app.use('/api/payment/webhook', express.raw({ type: 'application/json' }));
 
 app.use(express.json());
 
-// Protection contre les injections
-app.use(xss());
+// Pas de middleware global xss/mongo cause Express v5 incompat
 
 const authLimiter = rateLimit({
     max: 30, // Limit each IP to 20 requests per windowMs
