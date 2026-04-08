@@ -30,7 +30,7 @@ const sendRegistrationEmail = async (user, defaultPassword = null) => {
         // Generate QR Code Image as DataURL containing the secure token
         const qrCodeDataUrl = await QRCode.toDataURL(secureQrToken);
 
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const frontendUrl = process.env.FRONTEND_URL;
 
         const passwordBlock = defaultPassword ? `
             <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-top: 15px; border-radius: 4px;">
