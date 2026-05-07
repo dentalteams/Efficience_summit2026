@@ -45,7 +45,6 @@ const authLimiter = rateLimit({
 });
 app.use('/api/auth', authLimiter);
 
-mongoose.set('sanitizeFilter', true);
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('MongoDB Atlas Connecté avec succès');
